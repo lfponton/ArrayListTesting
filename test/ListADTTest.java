@@ -20,9 +20,28 @@ class ListADTTest
     assertEquals(42, list.get(2));
   }
 
-  @Test void addWrongIndexException() {
-    assertThrows(IndexOutOfBoundsException.class, () -> list.add(1, 3));
+  @Test void addAnyWrongIndexException() {
+    assertThrows(IndexOutOfBoundsException.class, () -> list.add(23, 3));
   }
+
+  @Test void addWithNegativeIndexException() {
+    assertThrows(IndexOutOfBoundsException.class, () -> list.add(-1, 4));
+  }
+
+  @Test void addNullElement() {
+    list.add(null);
+    assertNull(list.get(0));
+  }
+
+  @Test void addFullList() {
+    for (int i = 0; i < 200; i++)
+    {
+      list.add(i,i);
+    }
+    assertTrue(list.isFull());
+  }
+
+
 
 
 }
